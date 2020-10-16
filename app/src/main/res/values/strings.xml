@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TP-homework</string>
+    <string name="addition_element">Добавить элемент в конец списка</string>
 </resources>
