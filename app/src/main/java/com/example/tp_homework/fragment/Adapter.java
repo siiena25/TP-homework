@@ -1,6 +1,5 @@
 package com.example.tp_homework.fragment;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tp_homework.R;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder> {
-    private int count_of_numbers;
+    private int countOfNumbers;
     private final OnNumberListener numberListener;
+    private final int colorIfNumberEven;
+    private final int colorIfNumberOdd;
 
-    public Adapter(int count, OnNumberListener onNumberListener) {
-        this.count_of_numbers = count;
+    public Adapter(int count, OnNumberListener onNumberListener, int colorBlue, int colorRed) {
+        this.countOfNumbers = count;
         this.numberListener = onNumberListener;
+        this.colorIfNumberEven = colorBlue;
+        this.colorIfNumberOdd = colorRed;
     }
 
     public void additionNumber() {
-        count_of_numbers++;
+        countOfNumbers++;
     }
 
     @NonNull
@@ -35,12 +38,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder> {
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         String text = String.valueOf(position + 1);
         holder.text.setText(text);
-        holder.text.setTextColor(position % 2 == 1 ? Color.RED : Color.BLUE);
+        holder.text.setTextColor(position % 2 == 1 ? this.colorIfNumberOdd : this.colorIfNumberEven);
     }
 
     @Override
     public int getItemCount() {
-        return count_of_numbers;
+        return countOfNumbers;
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

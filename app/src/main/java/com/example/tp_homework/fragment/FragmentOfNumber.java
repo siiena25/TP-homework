@@ -33,7 +33,7 @@ public class FragmentOfNumber extends Fragment {
         }
         TextView myView = view.findViewById(R.id.display_number);
         myView.setText(number);
-        myView.setTextColor(Integer.parseInt(number) % 2 == 1 ? Color.BLUE : Color.RED);
+        myView.setTextColor(Integer.parseInt(number) % 2 == 1 ? getActivity().getResources().getColor(R.color.blue) : getActivity().getResources().getColor(R.color.red));
     }
 
     public static FragmentOfNumber newInstance(int param) {

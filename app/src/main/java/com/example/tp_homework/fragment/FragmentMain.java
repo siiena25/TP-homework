@@ -18,8 +18,6 @@ import com.example.tp_homework.R;
 public class FragmentMain extends Fragment implements Adapter.OnNumberListener {
 
     private static final String COUNT_OF_NUMBERS = "count_of_numbers" ;
-    private static final int COUNT_OF_COLUMNS_PORTRAIT = 3;
-    private static final int COUNT_OF_COLUMNS_LANDSCAPE = 4;
     private Adapter adapter;
     private int count;
 
@@ -35,8 +33,8 @@ public class FragmentMain extends Fragment implements Adapter.OnNumberListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        count = (savedInstanceState != null) ? savedInstanceState.getInt(COUNT_OF_NUMBERS) : 100;
-        adapter = new Adapter(count, this);
+        count = (savedInstanceState != null) ? savedInstanceState.getInt(COUNT_OF_NUMBERS) : getActivity().getResources().getInteger(R.integer.countOfNumberDefault);
+        adapter = new Adapter(count, this, getActivity().getResources().getColor(R.color.blue), getActivity().getResources().getColor(R.color.red));
     }
 
     @Nullable
@@ -51,10 +49,10 @@ public class FragmentMain extends Fragment implements Adapter.OnNumberListener {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView list = view.findViewById(R.id.list);
         if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            list.setLayoutManager(new GridLayoutManager(getContext(), COUNT_OF_COLUMNS_PORTRAIT));
+            list.setLayoutManager(new GridLayoutManager(getContext(), getActivity().getResources().getInteger(R.integer.countOfColumnsPortrait)));
         }
         else {
-            list.setLayoutManager(new GridLayoutManager(getContext(), COUNT_OF_COLUMNS_LANDSCAPE));
+            list.setLayoutManager(new GridLayoutManager(getContext(), getActivity().getResources().getInteger(R.integer.countOfColumnsLandscape)));
         }
         list.setAdapter(adapter);
         Button addNumber = view.findViewById(R.id.addition_element);
